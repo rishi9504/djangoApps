@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from blog.models import Post, Comment
+from blog.forms import CommentForm
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -52,21 +54,25 @@ def blog_category(request, category):
 
 
 def blog_detail(request, pk):
-    # Retrieve a single post from the database using its primary key (pk).
-    # This returns an instance of the Post model.
     post = Post.objects.get(pk=pk)
+    form = CommentForm()
 
-    # Retrieve all comments related to the specific post.
-    # This returns a QuerySet of Comment instances.
-    comments = Comment.objects.filter(post=post)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = Comment(
+                author=form.cleaned_data["author"],
+                body=form.cleaned_data["body"],
+                post=post,
+            )
+            comment.save()
+            return HttpResponseRedirect(request.path_info)
+    comments = Comment.objects.filter(post=post).order_by("-created_on")
 
-    # Create a context dictionary that will be passed to the template.
-    # The dictionary contains the post and its related comments.
     context = {
         "post": post,
         "comments": comments,
+        "form": CommentForm(),
     }
 
-    # Render the 'blog/detail.html' template with the context dictionary.
-    # The template is responsible for displaying the post and its comments.
     return render(request, "blog/detail.html", context)
