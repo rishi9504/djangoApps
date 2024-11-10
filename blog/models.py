@@ -23,24 +23,8 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-
-        return reverse("post_detail", kwargs={"pk": self.pk})
-
     class Meta:
         ordering = ["-created_on"]
-
-    def get_absolute_url(self):
-
-        return reverse("post_detail", kwargs={"pk": self.pk})
-
-    def get_edit_url(self):
-
-        return reverse("post_edit", kwargs={"pk": self.pk})
-
-    def get_delete_url(self):
-
-        return reverse("post_delete", kwargs={"pk": self.pk})
 
 
 class Comment(models.Model):

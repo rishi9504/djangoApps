@@ -1,0 +1,19 @@
+<!-- blog/templates/blog/index.html-->
+
+{% block page_title %}
+<h2>Blog Posts</h2>
+{% endblock page_title %}
+
+{% block page_content %}
+{% block posts %}
+{% for post in posts %}
+<h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
+<small>
+    {{ post.created_on }} | Categories:
+    {% for category in post.categories.all %}
+    <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+    {% endfor %}
+</small>
+{% endfor %}
+{% endblock posts %}
+{% endblock page_content %}
