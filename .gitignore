@@ -4,3 +4,5 @@ blog/migrations/__pycache__/*
 personal_blog/__pycache__/*
 pages/__pycache__/*
 pages/migrations/__pycache__/*
+projects/__pycache__/*
+projects/migrations/__pycache__/*
