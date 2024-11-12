@@ -6,3 +6,5 @@ pages/__pycache__/*
 pages/migrations/__pycache__/*
 projects/__pycache__/*
 projects/migrations/__pycache__/*
+users/__pycache__/*
+users/migrations/__pycache__/*
