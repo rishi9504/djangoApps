@@ -133,3 +133,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "uploads/"
+
+
+# comment below if you dont want the redirect
+LOGIN_REDIRECT_URL = "dashboard"
