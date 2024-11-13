@@ -137,3 +137,5 @@ MEDIA_ROOT = BASE_DIR / "uploads/"
 
 # comment below if you dont want the redirect
 LOGIN_REDIRECT_URL = "dashboard"
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 1025
